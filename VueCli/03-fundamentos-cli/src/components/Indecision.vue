@@ -30,13 +30,15 @@ export default {
                 this.answer = answer == 'yes' ? 'Sí!!' : 'No!!' ;
                 this.bgImageUrl = image
             } catch (error) {
-                
+                this.answer = 'No se pudo cargar del API';
+                this.bgImageUrl = null;
             }
         }
     },
     watch: {
         question(val, oldVal) {
             this.isValidQuestion = false
+            console.log({ val })
             if (!val.includes('?')) return;
             this.isValidQuestion = true
             this.getAnswer()

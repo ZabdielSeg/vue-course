@@ -1,10 +1,11 @@
 <template lang="">
     <h2>{{customTitle}}</h2>
     <p>Counter value: {{ counter }} <sup>2</sup> = {{ square }} </p>
+    <p data-testid="counter">{{ counter }}</p>
 
-    <div>
+    <div class='buttons'>
         <button @click="increment">+1</button>
-        <button @click="decrement">-1</button>
+        <button data-testid="decrement" @click="decrement">-1</button>
     </div>
 </template>
 <script>
@@ -13,9 +14,9 @@ export default {
         title: String,
         start: {
             type: Number,
-            default: 34,
+            default: 100,
             validator(value) {
-                return value > 30
+                return value >=  0
             }
         },
     },
@@ -27,7 +28,6 @@ export default {
     },
     computed: {
         square() {
-            console.log('computed square');
             return this.counter * this.counter
         },
         customTitle() {
